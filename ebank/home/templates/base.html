@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
 <body>
+<div class="navbar">
+  {% for item in navigation %}
+    <a href="{{ item.url }}" class="item {% if item.active %}active{% endif %}">{{ item.title }}</a>
+  {% endfor %}
+</div>
 <div class="body">{% block body %}{% endblock %}</div>
 </body>
 </html>
