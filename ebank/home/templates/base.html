@@ -4,13 +4,39 @@
 <meta charset="utf-8">
 <title>eBank</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% block style %}{% endblock %}
 </head>
 <body>
-<div class="navbar">
-  {% for item in navigation %}
-    <a href="{{ item.url }}" class="item {% if item.active %}active{% endif %}">{{ item.title }}</a>
-  {% endfor %}
+<div class="header">
+  <div class="container">
+    <a class="logo" href="/">eBank</a>
+    <div class="navigation">
+      {% for item in navigation %}
+        <a href="{{ item.url }}" class="{% if item.active %}active{% endif %}">{{ item.title }}</a>
+      {% endfor %}
+      <a href="#">登录/注册</a>
+    </div>
+  </div>
 </div>
 <div class="body">{% block body %}{% endblock %}</div>
+<div class="footer">
+  <div class="container">
+    <div class="footer-join">
+      <span class="footer-join-title">立即制定股权激励计划</span>
+      <a href="#">立即注册</a>
+    </div>
+    <div class="footer-items">
+      <a class="foot-item about" href="/about">关于我们</a>
+      <a class="foot-item about" href="/about">法律保障</a>
+      <a class="foot-item about" target="_blank" href="https://shimo.im/s/2950c0a8-c38d-c996-d840-a2f53ec4bd0d">加入我们</a>
+      <a class="foot-item weibo" href="http://weibo.com/shimowendang" target="_blank">微博</a>
+      <a class="foot-item twitter" href="https://twitter.com/ShimoDocs" target="_blank" rel="noopener">Twitter</a>
+      <a class="foot-item facebook" href="https://www.facebook.com/shimo.im" target="_blank" rel="noopener">Facebook</a>
+      <span class="foot-item icp" title="中华人民共和国互联网信息服务备案">鄂ICP备14013665号-2</span>
+    </div>
+  </div>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+{% block script %}{% endblock %}
 </body>
 </html>

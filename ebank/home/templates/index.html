@@ -1,4 +1,59 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>hello</h1>
+<div class="carousel">
+  <div style="background: #ecf0f1"></div>
+  <div style="background: #34495e"></div>
+</div>
+<div class="customers">
+  <div class="container">
+    <div class="customers-title">他们都在用</div>
+    <!-- 真格 -->
+    <a href="http://www.zhenfund.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_1.jpg" alt=""></a>
+    <!-- 黑马会 -->
+    <a href="http://www.iheima.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_2.jpg" alt=""></a>
+    <!-- 艾想投资 -->
+    <a href="http://www.ideate-investments.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_3.jpg" alt=""></a>
+    <!-- 良仓 -->
+    <a href="http://lc.b12.cn/" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_4.jpg" alt=""></a>
+    <!-- ucloud -->
+    <a href="https://www.ucloud.cn/" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_5.jpg" alt=""></a>
+    <!-- 燎原 -->
+    <a href="https://liaoyuan.io" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_6.jpg" alt=""></a>
+    <!-- woo -->
+    <a href="http://www.wujiespace.com/" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_7.jpg" alt=""></a>
+    <!-- 创客空间 -->
+    <a href="javascript:;" class="fl"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_8.jpg" alt=""></a>
+    <!-- 励业公社' -->
+    <a href="javascript:;" class="fl"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_9.jpg" alt=""></a>
+    <!-- 氪空间 -->
+    <a href="http://www.krspace.cn/" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_10.jpg" alt=""></a>
+    <!-- 创客邦 -->
+    <a href="http://ckb.opark.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_11.jpg" alt=""></a>
+    <!-- dreamT -->
+    <a href="http://www.dreamt.cn" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_12.jpg" alt=""></a>
+    <!-- 火币 -->
+    <a href="https://www.huobi.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_13.jpg" alt=""></a>
+    <!-- 趣店 -->
+    <a href="http://qd.qufenqi.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_14.jpg" alt=""></a>
+    <!-- 极牛 -->
+    <a href="http://www.geekniu.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_15.jpg" alt=""></a>
+    <!-- 9AM -->
+    <a href="javascript:;" class="fl"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_16.jpg" alt=""></a>
+    <!-- 凯叔讲故事 -->
+    <a href="http://www.kaishustory.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_17.jpg" alt=""></a>
+    <!-- 兼职宝 -->
+    <a href="http://www.jianzhibao.com" class="fl" target="_blank"><img src="https://www.kapbook.com/resources/images/logo_wall/logo_wall_18.jpg" alt=""></a>
+  </div>
+</div>
+{% endblock %}
+{% block style %}
+<link href="//cdn.bootcss.com/slick-carousel/1.6.0/slick.min.css" rel="stylesheet">
+{% endblock %}
+{% block script %}
+<script src="//cdn.bootcss.com/slick-carousel/1.6.0/slick.min.js"></script>
+<script>
+$('.carousel').slick({
+  arrows: false
+})
+</script>
 {% endblock %}

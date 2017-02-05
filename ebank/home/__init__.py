@@ -1,7 +1,11 @@
 # coding=utf-8
 
+import sys
 from flask import request, render_template
 from .app import app
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 @app.context_processor
 def context_processor():
@@ -14,13 +18,13 @@ def context_processor():
             },
             {
                 'title': '现金服务',
-                'url': '/a',
-                'active': request.path == 'a',
+                'url': '/service',
+                'active': request.path == '/service',
             },
             {
                 'title': '预算管理',
-                'url': '/b',
-                'active': request.path == 'b',
+                'url': '/management',
+                'active': request.path == '/management',
             },
         ]
     }
@@ -28,3 +32,11 @@ def context_processor():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
+@app.route('/management')
+def management():
+    return render_template('management.html')
