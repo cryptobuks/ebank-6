@@ -7,6 +7,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+app.config.from_pyfile('../config.py')
+
 
 @app.context_processor
 def context_processor():
