@@ -1,8 +1,13 @@
 import React from 'react'
+import {withRouter} from 'react-router'
 import Header from './header'
-import SideNav from './sidenav'
+import SideNav from './side-nav'
 
-export default class Layout extends React.Component {
+export default withRouter(class Base extends React.Component {
+  componentDidMount() {
+    this.props.router.replace('/login')
+  }
+
   render() {
     return <div>
       <Header/>
@@ -16,4 +21,4 @@ export default class Layout extends React.Component {
       </div>
     </div>
   }
-}
+})

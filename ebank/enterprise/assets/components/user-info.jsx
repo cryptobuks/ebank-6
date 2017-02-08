@@ -1,10 +1,10 @@
 import React from 'react'
-import Layout from './layout'
+import Base from './base'
 
 export default class UserInfo extends React.Component {
   render() {
-    return <Layout>
+    return <Base>
       <h1>hello</h1>
-    </Layout>
+    </Base>
   }
 }
