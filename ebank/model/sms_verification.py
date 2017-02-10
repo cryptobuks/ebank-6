@@ -53,4 +53,8 @@ class SmsVerification(sqlalchemy.Model):
 
     @staticmethod
     def verify(mobile, code):
-        return SmsVerification.query.filter_by(mobile=mobile, code=code).first() is not None
+        sms_verification = SmsVerification.query.filter_by(mobile=mobile).first()
+        if not sms_verification:
+            return False
+        else:
+            return sms_verification.is_available() and sms_verification.code == code
