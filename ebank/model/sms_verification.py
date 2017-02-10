@@ -50,3 +50,7 @@ class SmsVerification(sqlalchemy.Model):
         for i in range(0, length):
             verification_code += str(random.randint(0, 9))
         return verification_code
+
+    @staticmethod
+    def verify(mobile, code):
+        return SmsVerification.query.filter_by(mobile=mobile, code=code).first() is not None

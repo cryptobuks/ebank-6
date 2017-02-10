@@ -9,6 +9,8 @@ from datetime import datetime
 
 import requests
 
+from .model.sms_verification import SmsVerification
+
 
 class Sms:
     def __init__(self, sign_name='', access_key='', secret_key=''):
@@ -44,3 +46,18 @@ class Sms:
             ('Version', '2016-09-27'),
         ]))
         return requests.post('https://sms.aliyuncs.com', data=params).json()
+
+    @staticmethod
+    def verify(mobile, code):
+        return SmsVerification.verify(mobile, code)
+
+    def send_verification_code(self, mobile):
+        sms_verification = SmsVerification.get(mobile)
+        if sms_verification:
+            self.send(mobile, 'SMS_45995002', '{"name":"' + sms_verification.code + '"}')
+            return True
+        else:
+            return False
+
+
+sms = Sms()
