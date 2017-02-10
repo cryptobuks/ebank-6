@@ -1,13 +1,9 @@
 class Api {
-  constructor() {
-    this.host = 'http://localhost:8001'
-  }
-
   request(method, name, data) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
       xhr.responseType = 'json'
-      xhr.open(method, this.host + name)
+      xhr.open(method, name)
       xhr.addEventListener('loadend', () => {
         if (xhr.status == 200) {
           resolve(xhr.response)
@@ -28,14 +24,14 @@ class Api {
   }
 
   login(account, password) {
-    return this.request('POST', '/enterprise/login', {
+    return this.request('POST', '/login', {
       account: account,
       password: password,
     })
   }
 
   register(data) {
-    return this.request('POST', '/enterprise/register', data)
+    return this.request('POST', '/register', data)
   }
 
   getVerificationCode(mobile) {

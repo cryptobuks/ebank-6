@@ -109,14 +109,14 @@ export default class Register extends React.Component {
           className='form-control'
           placeholder='密码'
           onChange={this.handleInput}
-          type='text' name='password' required/>
+          type='password' name='password' required/>
       </div>
       <div className='form-group'>
         <input
           className='form-control'
           placeholder='确认密码'
           onChange={this.handleInput}
-          type='text' name='password-again' required/>
+          type='password' name='password-again' required/>
       </div>
       <div className='form-group'>
         <button className='btn btn-block btn-primary'>注册</button>

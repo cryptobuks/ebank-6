@@ -1,18 +1,44 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link, withRouter} from 'react-router'
+import api from '../modules/api'
 
-export default class Login extends React.Component {
+export default withRouter(class Login extends React.Component {
+  constructor() {
+    super()
+    this.data = {}
+    this.handleInput = this.handleInput.bind(this)
+    this.submit = this.submit.bind(this)
+  }
+
+  submit(event) {
+    api.login(this.data.account, this.data.password).then(() => {
+      location.href = '/'
+    }).catch(error => {
+      alert(error.message)
+    })
+    event.preventDefault()
+  }
+
+  handleInput() {
+    this.data[event.target.id] = event.target.value
+  }
+
   render() {
-    return <form className='col-lg-4 col-lg-offset-4'>
+    return <form className='col-lg-4 col-lg-offset-4' onSubmit={this.submit}>
       <div className='page-header'>
         <h1>eBank</h1>
       </div>
       <div className='form-group'>
         <div className='input-group'>
-          <label className='input-group-addon' htmlFor='user'>
+          <label className='input-group-addon' htmlFor='account'>
             <span className='glyphicon glyphicon-user'/>
           </label>
-          <input type='text' className='form-control' id='user' placeholder='账号，或手机号码'/>
+          <input
+            type='text'
+            className='form-control'
+            id='account'
+            placeholder='账号，或手机号码'
+            onChange={this.handleInput} />
         </div>
       </div>
       <div className='form-group'>
@@ -20,7 +46,11 @@ export default class Login extends React.Component {
           <label className='input-group-addon' htmlFor='password'>
             <span className='glyphicon glyphicon-lock'/>
           </label>
-          <input type='text' className='form-control' id='password' placeholder='密码'/>
+          <input
+            type='password'
+            className='form-control'
+            id='password'
+            placeholder='密码'/>
         </div>
       </div>
       <div className='form-group'>
@@ -32,4 +62,4 @@ export default class Login extends React.Component {
       </div>
     </form>
   }
-}
+})
