@@ -1,43 +1,121 @@
 import React from 'react'
 import {Link} from 'react-router'
+import api from '../modules/api'
 
 export default class Register extends React.Component {
+  constructor() {
+    super()
+    this.defaultText = '获取验证码'
+    this.state = {
+      buttonText: this.defaultText,
+    }
+    this.data = {}
+    this.submit = this.submit.bind(this)
+    this.handleInput = this.handleInput.bind(this)
+    this.getVerificationCode = this.getVerificationCode.bind(this)
+  }
+
+  submit(event) {
+    console.log(this.data)
+    event.preventDefault()
+  }
+
+  handleInput(event) {
+    this.data[event.target.name] = event.target.value
+  }
+
+  startWaiting(time) {
+    if (time == 0) {
+      this.setState({buttonText: this.defaultText})
+    } else {
+      this.setState({buttonText: `等待${time}秒`})
+      setTimeout(this.startWaiting.bind(this, time - 1), 1000)
+    }
+  }
+
+  getVerificationCode() {
+    let mobile = this.data['contacts-mobile']
+    if (mobile && mobile.length == 11) {
+      api.getVerificationCode(mobile).then(state => {
+        this.startWaiting(60)
+      })
+    } else {
+      alert('请输入正确的手机号码')
+    }
+  }
+
   render() {
-    return <form className='col-lg-4 col-lg-offset-4'>
+    return <form className='col-lg-4 col-lg-offset-4' onSubmit={this.submit.bind(this)}>
       <div className='page-header'>
         <h1>eBank</h1>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='enterprise-name' placeholder='企业名称，与工商营业执照名一致，注意括号的半角全角'/>
+        <input
+          className='form-control'
+          placeholder='企业名称，与工商营业执照名一致，注意括号的半角全角'
+          onChange={this.handleInput}
+          type='text' name='enterprise-name' required/>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='enterprise-id' placeholder='工商营业执照号码'/>
+        <input
+          className='form-control'
+          placeholder='工商营业执照号码'
+          onChange={this.handleInput}
+          type='text' name='enterprise-id' required/>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='contacts-name' placeholder='联系人名称'/>
+        <input
+          className='form-control'
+          placeholder='联系人名称'
+          onChange={this.handleInput}
+          type='text' name='contacts-name' required/>
       </div>
       <div className='form-group'>
         <div className='input-group'>
-          <input type='number' className='form-control' id='contacts-mobile' placeholder='联系人手机号码'/>
+          <input
+            className='form-control'
+            placeholder='联系人手机号码'
+            onChange={this.handleInput}
+            type='number' name='contacts-mobile' required/>
           <span className='input-group-btn'>
-            <button className='btn btn-default' type='button'>获取验证码</button>
+            <button
+              disabled={this.state.buttonText != this.defaultText}
+              className='btn btn-default'
+              onClick={this.getVerificationCode}
+              type='button'>{this.state.buttonText}</button>
           </span>
         </div>
       </div>
       <div className='form-group'>
-        <input type='number' className='form-control' id='verification-code' placeholder='手机短信验证码'/>
+        <input
+          className='form-control'
+          placeholder='手机短信验证码'
+          onChange={this.handleInput}
+          type='number' name='verification-code' required/>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='account' placeholder='账号，用于登录'/>
+        <input
+          className='form-control'
+          placeholder='账号，用于登录'
+          onChange={this.handleInput}
+          type='text' name='account' required/>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='password' placeholder='密码'/>
+        <input
+          className='form-control'
+          placeholder='密码'
+          onChange={this.handleInput}
+          type='text' name='password' required/>
       </div>
       <div className='form-group'>
-        <input type='text' className='form-control' id='password-again' placeholder='确认密码'/>
+        <input
+          className='form-control'
+          placeholder='确认密码'
+          onChange={this.handleInput}
+          type='text' name='password-again' required/>
       </div>
       <div className='form-group'>
-        <button className='btn btn-block btn-primary'>登录</button>
+        <button className='btn btn-block btn-primary'>注册</button>
       </div>
       <div className='form-group text-center'>
         已注册？<Link to='/login'>点击登录</Link>
