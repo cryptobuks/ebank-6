@@ -16,7 +16,11 @@ export default class Register extends React.Component {
   }
 
   submit(event) {
-    console.log(this.data)
+    api.register(this.data).then(state => {
+      api.login(this.data['contacts-mobile'], this.data['password'])
+    }).catch(error => {
+      alert(error.message)
+    })
     event.preventDefault()
   }
 
@@ -54,14 +58,14 @@ export default class Register extends React.Component {
           className='form-control'
           placeholder='企业名称，与工商营业执照名一致，注意括号的半角全角'
           onChange={this.handleInput}
-          type='text' name='enterprise-name' required/>
+          type='text' name='business-name' required/>
       </div>
       <div className='form-group'>
         <input
           className='form-control'
           placeholder='工商营业执照号码'
           onChange={this.handleInput}
-          type='text' name='enterprise-id' required/>
+          type='text' name='business-id' required/>
       </div>
       <div className='form-group'>
         <input

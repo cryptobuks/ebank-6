@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   entry: './main.jsx',
   output: {
@@ -11,7 +13,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+        ],
         use: [
           {
             loader: 'babel-loader',
