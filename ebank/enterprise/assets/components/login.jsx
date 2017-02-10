@@ -1,6 +1,6 @@
-import React from 'react'
-import {Link, withRouter} from 'react-router'
-import api from '../modules/api'
+import React from "react";
+import {Link, withRouter} from "react-router";
+import api from "../modules/api";
 
 export default withRouter(class Login extends React.Component {
   constructor() {
@@ -12,6 +12,7 @@ export default withRouter(class Login extends React.Component {
 
   submit(event) {
     api.login(this.data.account, this.data.password).then(() => {
+      alert('登录成功')
       location.href = '/'
     }).catch(error => {
       alert(error.message)
@@ -19,7 +20,7 @@ export default withRouter(class Login extends React.Component {
     event.preventDefault()
   }
 
-  handleInput() {
+  handleInput(event) {
     this.data[event.target.id] = event.target.value
   }
 
@@ -38,7 +39,7 @@ export default withRouter(class Login extends React.Component {
             className='form-control'
             id='account'
             placeholder='账号，或手机号码'
-            onChange={this.handleInput} />
+            onChange={this.handleInput}/>
         </div>
       </div>
       <div className='form-group'>
@@ -50,7 +51,8 @@ export default withRouter(class Login extends React.Component {
             type='password'
             className='form-control'
             id='password'
-            placeholder='密码'/>
+            placeholder='密码'
+            onChange={this.handleInput}/>
         </div>
       </div>
       <div className='form-group'>

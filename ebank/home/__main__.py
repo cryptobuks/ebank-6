@@ -1,1 +1,1 @@
-import sysfrom os.path import dirname, realpathsys.path.append(dirname(dirname(dirname(realpath(__file__)))))from ebank.home import appapp.run(debug=True)
+import sysfrom os.path import dirname, realpathsys.path.append(dirname(dirname(dirname(realpath(__file__)))))from ebank.home import appapp.run(debug=True, port=8000)

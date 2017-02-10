@@ -1,7 +1,10 @@
 # coding=utf-8
 
 import hashlib
-from flask import Flask, request, render_template
+
+from flask import Flask, request, render_template, session
+from flask import json
+from sqlalchemy.exc import IntegrityError
 
 from ..model import sqlalchemy
 from ..model.enterprise import Enterprise
@@ -20,7 +23,14 @@ sqlalchemy.create_all(app=app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'account' in session:
+        enterprise = Enterprise.query.filter_by(account=session['account']).first()
+        user = {
+            'name': enterprise.business_name,
+        }
+    else:
+        user = None
+    return render_template('index.html', user=user)
 
 
 @app.route('/get_verification_code/<mobile>')
@@ -43,8 +53,11 @@ def register():
         enterprise.account = request.form['account']
         enterprise.password = hash_string(request.form['password'])
         sqlalchemy.session.add(enterprise)
-        sqlalchemy.session.commit()
-        return response_success(True)
+        try:
+            sqlalchemy.session.commit()
+            return response_success(True)
+        except:
+            return response_failure('注册失败')
     else:
         return response_failure('验证码不匹配')
 
@@ -57,6 +70,7 @@ def login():
     if not user:
         user = Enterprise.query.filter_by(contacts_mobile=account, password=password_hash).first()
     if user:
+        session['account'] = user.account
         return response_success(True)
     else:
         return response_failure('账号与密码不匹配')

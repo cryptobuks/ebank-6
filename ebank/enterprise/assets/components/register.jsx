@@ -17,7 +17,10 @@ export default class Register extends React.Component {
 
   submit(event) {
     api.register(this.data).then(state => {
-      api.login(this.data['contacts-mobile'], this.data['password'])
+      alert('注册成功')
+      api.login(this.data['contacts-mobile'], this.data['password']).then(() => {
+        location.href = '/'
+      })
     }).catch(error => {
       alert(error.message)
     })

@@ -5,7 +5,9 @@ import SideNav from './side-nav'
 
 export default withRouter(class Base extends React.Component {
   componentDidMount() {
-    this.props.router.replace('/login')
+    if (!window.user) {
+      this.props.router.replace('/login')
+    }
   }
 
   render() {
