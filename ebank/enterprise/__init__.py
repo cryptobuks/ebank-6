@@ -24,7 +24,11 @@ def index():
     if 'account' in session and session['account']:
         enterprise = Enterprise.query.filter_by(account=session['account']).first()
         user = {
-            'name': enterprise.business_name,
+            'account': enterprise.account,
+            'business_id': enterprise.business_id,
+            'business_name': enterprise.business_name,
+            'contacts_name': enterprise.contacts_name,
+            'contacts_mobile': enterprise.contacts_mobile,
         }
     else:
         user = None

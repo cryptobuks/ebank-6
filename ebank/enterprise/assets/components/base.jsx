@@ -13,11 +13,11 @@ export default withRouter(class Base extends React.Component {
   render() {
     return <div>
       <Header/>
-      <div className="container">
-        <div className="col-lg-2">
+      <div className='container'>
+        <div className='col-lg-2'>
           <SideNav/>
         </div>
-        <div className="col-lg-10">
+        <div className='col-lg-10'>
           {this.props.children}
         </div>
       </div>

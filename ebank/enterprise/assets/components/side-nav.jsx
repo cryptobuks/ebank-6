@@ -29,7 +29,7 @@ export default withRouter(class SideNav extends React.Component {
   }
 
   render() {
-    return <ul className="nav nav-pills nav-stacked text-center">
+    return <ul className='nav nav-pills nav-stacked text-center'>
       {this.menu.map((item) =>
         <li className={item.path == this.props.router.routes[0].path ? 'active' : ''} key={item.name}>
           <Link to={item.path}>
