@@ -2,9 +2,7 @@
 
 import hashlib
 
-from flask import Flask, request, render_template, session
-from flask import json
-from sqlalchemy.exc import IntegrityError
+from flask import Flask, request, render_template, session, redirect
 
 from ..model import sqlalchemy
 from ..model.enterprise import Enterprise
@@ -23,7 +21,7 @@ sqlalchemy.create_all(app=app)
 
 @app.route('/')
 def index():
-    if 'account' in session:
+    if 'account' in session and session['account']:
         enterprise = Enterprise.query.filter_by(account=session['account']).first()
         user = {
             'name': enterprise.business_name,
@@ -38,7 +36,7 @@ def get_verification_code(mobile):
     return response_success(sms.send_verification_code(mobile))
 
 
-def hash_string(string, salt=''):
+def hash_string(string):
     return hashlib.sha1(string).hexdigest()
 
 
@@ -74,3 +72,9 @@ def login():
         return response_success(True)
     else:
         return response_failure('账号与密码不匹配')
+
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    session['account'] = None
+    return redirect('/#/login')
