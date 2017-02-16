@@ -1,15 +1,14 @@
-.navbar-brand img {
+.navbar-brand .logo {
   width: 60px;
   float: left;
-  margin-right: 8px;
   position: relative;
   top: -4px;
 }
 
-.navbar-brand span {
-  color: #e63a2c;
+.navbar-brand .slogan {
+  height: 30px;
   position: relative;
-  top: 32px;
+  top: 26px;
 }
 
 .navbar-default .navbar-nav > li > a {

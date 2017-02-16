@@ -8,8 +8,8 @@ export default class Header extends React.Component {
       <div className='container'>
         <div className='navbar-header'>
           <a href='#' className='navbar-brand'>
-            <img src={require('../images/logo.jpg')} alt='EBank'/>
-            <span>携手相伴，创造更有价值的未来</span>
+            <img className='logo' src={require('../images/logo.jpg')} alt='EBank'/>
+            <img className='slogan' src={require('../images/slogan.png')} alt='携手相伴，创造更有价值的未来'/>
           </a>
         </div>
         <ul className='nav navbar-nav navbar-right'>
