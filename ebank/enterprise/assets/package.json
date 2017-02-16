@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "develop": "webpack --watch --devtool souce-map"
+    "develop": "webpack --watch --devtool souce-map",
+    "release": "webpack --optimize-minimize"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
