@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 export default class Header extends React.Component {
   render() {
     let user = window.user || {}
-    return <div className='navbar navbar-static-top navbar-default'>
+    return <div className='navbar navbar-static-top navbar-ebank'>
       <div className='container'>
         <div className='navbar-header'>
           <a href='#' className='navbar-brand'>
@@ -14,8 +14,10 @@ export default class Header extends React.Component {
         </div>
         <ul className='nav navbar-nav navbar-right'>
           <li><a className='welcome'>{user.account}客户您好！</a></li>
-          <li><Link to='/budget_report'>预算报告</Link></li>
-          <li><Link to='/cash_management'>现金管理</Link></li>
+          <li><Link to='/cash_management'>在线出纳</Link></li>
+          <li><Link to='/budget'>预算管理</Link></li>
+          <li><Link to='/plan'>理财计划</Link></li>
+          <li><Link to='/loan'>贷款融资</Link></li>
           <li><a href='#'>修改密码</a></li>
           <li><a href='/logout'>退出登录</a></li>
         </ul>

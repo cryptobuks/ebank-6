@@ -14,10 +14,10 @@ export default withRouter(class Base extends React.Component {
     return <div>
       <Header/>
       <div className='container'>
-        <div className='col-lg-2'>
+        <div className='col-lg-2 side-nav'>
           <SideNav/>
         </div>
-        <div className='col-lg-10'>
+        <div className='col-lg-10 body'>
           {this.props.children}
         </div>
       </div>

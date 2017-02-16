@@ -1,23 +1,72 @@
-.navbar-brand .logo {
-  width: 60px;
+body {
+  background-color: #f8f8f8;
+  color: #666;
+}
+
+.side-nav {
+  padding: 0;
+}
+
+.body {
+  padding-top: 15px;
+  padding-right: 0;
+}
+
+.navbar-ebank {
+  background-color: #fff;
+  border-color: #e63a2c;
+  margin-bottom: 0;
+}
+
+.navbar-ebank .navbar-brand .logo {
+  width: 80px;
   float: left;
   position: relative;
   top: -4px;
 }
 
-.navbar-brand .slogan {
-  height: 30px;
+.navbar-ebank .navbar-brand .slogan {
+  height: 32px;
   position: relative;
-  top: 26px;
+  top: 46px;
 }
 
-.navbar-default .navbar-nav > li > a {
-  padding-top: 45px;
-  padding-bottom: 15px;
+.navbar-ebank .navbar-nav > li > a {
+  padding: 65px 10px 15px 10px;
   font-size: 18px;
   color: #e63a2c;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-ebank .navbar-nav > li > a:hover {
   color: #e63a2c;
+  background-color: transparent;
+}
+
+.nav-side {
+  text-align: center;
+  font-size: 16px;
+  background-color: #fff;
+  padding-top: 15px;
+}
+
+.nav-side a {
+  color: #333;
+}
+
+.nav-side .glyphicon {
+  margin-right: 10px;
+}
+
+.dl-horizontal {
+  margin-bottom: 0;
+}
+
+.dl-horizontal dt {
+  width: 100px;
+  font-weight: normal;
+  color: #333;
+}
+
+.dl-horizontal dd {
+  margin-left: 115px;
 }

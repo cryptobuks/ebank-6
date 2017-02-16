@@ -4,39 +4,50 @@ import {Link, withRouter} from 'react-router'
 export default withRouter(class SideNav extends React.Component {
   constructor() {
     super()
+    this.state = {
+      height: innerHeight - 102
+    }
     this.menu = [
       {
-        name: '用户资料',
+        name: '客户资料',
         path: '/',
+        icon: 'user',
       },
       {
-        name: '预算报告',
-        path: '/budget_report',
-      },
-      {
-        name: '现金管理',
+        name: '在线出纳',
         path: '/cash_management',
+        icon: 'calendar',
       },
       {
-        name: '金融超市',
-        path: '/market',
+        name: '预算管理',
+        path: '/budget',
+        icon: 'envelope',
       },
       {
-        name: '借贷融资',
+        name: '理财计划',
+        path: '/plan',
+        icon: 'tasks',
+      },
+      {
+        name: '贷款融资',
         path: '/loan',
+        icon: 'magnet',
       },
       {
-        name: '积分商城',
-        path: '/integral',
+        name: '礼品超市',
+        path: '/market',
+        icon: 'shopping-cart',
       },
     ]
   }
 
   render() {
-    return <ul className='nav nav-pills nav-stacked text-center'>
+    return <ul className='nav nav-stacked nav-side' style={{height: this.state.height}}>
       {this.menu.map((item) =>
         <li className={item.path == this.props.router.routes[0].path ? 'active' : ''} key={item.name}>
-          <Link to={item.path}>{item.name}</Link>
+          <Link to={item.path}>
+            <span className={'glyphicon glyphicon-' + item.icon}/> {item.name}
+          </Link>
         </li>
       )}
     </ul>
