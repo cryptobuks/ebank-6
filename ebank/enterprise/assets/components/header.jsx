@@ -13,7 +13,7 @@ export default class Header extends React.Component {
           </a>
         </div>
         <ul className='nav navbar-nav navbar-right'>
-          <li><a className='welcome'>{user.account}客户您好！</a></li>
+          <li><a className='welcome'>{user.account}客户您好</a></li>
           <li><Link to='/cash_management'>在线出纳</Link></li>
           <li><Link to='/budget'>预算管理</Link></li>
           <li><Link to='/plan'>理财计划</Link></li>
