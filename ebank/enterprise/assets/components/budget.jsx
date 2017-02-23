@@ -124,11 +124,22 @@ export default class Budget extends React.Component {
         name: '期末余额',
       },
     ]
-    this.create()
     this.upload = this.upload.bind(this)
   }
 
-  create() {
+  componentDidMount() {
+    api.fetchBudgetTable().then((data) => {
+      if (data) {
+        this.setState({rows: data})
+      } else {
+        this.createBudgetTable()
+      }
+    }).catch(() => {
+      this.createBudgetTable()
+    })
+  }
+
+  createBudgetTable() {
     for (let i = 1; i <= 24; i += 1) {
       this.state.rows.push({
         code: moment().add(i, 'month').format('YYYYMM'),
@@ -155,6 +166,7 @@ export default class Budget extends React.Component {
         total_outflow: 0,
       })
     }
+    this.setState({rows: this.state.rows})
   }
 
   updateTable(index) {
