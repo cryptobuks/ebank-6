@@ -91,7 +91,11 @@ def get_current_enterprise():
     return Enterprise.query.filter_by(account=session['account']).first()
 
 
-@app.route('/get_budget_table', methods=['POST'])
-def get_budgets():
-    enterprise = get_current_enterprise()
-    response_success(enterprise.get_monthly_budget())
+@app.route('/fetch_budget_table')
+def fetch_budget_table():
+    return response_success(None)
+
+
+@app.route('/upload_budget_table', methods=['POST'])
+def save_budget_table():
+    return response_success(None)
