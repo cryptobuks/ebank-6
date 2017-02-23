@@ -6,38 +6,81 @@ import Base from './base'
 const moment = require('moment')
 
 class Formatter extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      list: []
+    }
+    this.add = this.add.bind(this)
+    this.update = this.update.bind(this)
+    this.data = {}
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({list: props.value.list})
+  }
+
+  add() {
+    const data = Object.assign({}, this.data)
+    data.value = parseFloat(data.value)
+    this.state.list = update(this.state.list, {$push: [data]})
+    this.setState({list: this.state.list})
+    this.props.value.update(this.state.list)
+  }
+
+  remove(i) {
+    this.state.list = update(this.state.list, {$splice: [[i, 1]]})
+    this.setState({list: this.state.list})
+    this.props.value.update(this.state.list)
+  }
+
+  update(event) {
+    this.data[event.target.name] = event.target.value
+  }
+
   render() {
-    const list = this.props.value.list || []
-    return <div className='inflow-detail'>
-      <OverlayTrigger trigger='click' overlay={
-        <Popover id='popover-positioned-top'>
-          <table className='table'>
-            <thead>
-            <tr>
-              <th>标题</th>
-              <th>金额</th>
-              <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            {list.map((item, i) => <tr key={i}>
-              <td>{item.title}</td>
-              <td>{item.value}</td>
-              <td>
-                <a href='javascript:' className='text-danger'>删除</a>
-              </td>
-            </tr>)}
-            <tr>
-              <td><input type='text' className='form-control input-sm'/></td>
-              <td><input type='number' className='form-control input-sm'/></td>
-              <td><a href='javascript:'>添加</a></td>
-            </tr>
-            </tbody>
-          </table>
-        </Popover>}>
-        <a href='javascript:'>查看</a>
-      </OverlayTrigger>
-    </div>
+    return <OverlayTrigger trigger='click' placement='bottom' overlay={
+      <Popover id='popover-flow-detail'>
+        <table className='table'>
+          <thead>
+          <tr>
+            <th>标题</th>
+            <th>金额</th>
+            <th className='text-center'>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          {this.state.list.map((item, i) => <tr key={i}>
+            <td>{item.title}</td>
+            <td>{item.value}</td>
+            <td className='text-center'>
+              <a className='text-danger glyphicon glyphicon-remove' onClick={this.remove.bind(this, i)}/>
+            </td>
+          </tr>)}
+          <tr>
+            <td>
+              <input
+                type='text'
+                className='form-control input-sm'
+                name='title'
+                onChange={this.update}/>
+            </td>
+            <td>
+              <input
+                type='number'
+                className='form-control input-sm'
+                name='value'
+                onChange={this.update}/>
+            </td>
+            <td>
+              <a className='btn btn-primary btn-sm' onClick={this.add}>添加</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </Popover>}>
+      <a href='javascript:'>查看({this.props.value ? this.props.value.list.length : 0})</a>
+    </OverlayTrigger>
   }
 }
 
@@ -90,12 +133,44 @@ export default class Budget extends React.Component {
         month: moment().add(i, 'month').format('YYYY-MM'),
         starting_balance: 0,
         ending_balance: 0,
-        inflow: {list: [{title: '利息', value: 12}]},
+        inflow: {list: [], update: (data) => {
+          this.state.rows[i - 1].inflow.list = data
+          this.state.rows[i - 1].total_inflow = data.reduce((total, item) => {
+            total += item.value
+            return total
+          }, 0)
+          this.updateTable(i - 1)
+        }},
         total_inflow: 0,
-        outflow: {list: [{title: '利息', value: 12}]},
+        outflow: {list: [], update: (data) => {
+          this.state.rows[i - 1].outflow.list = data
+          this.state.rows[i - 1].total_outflow = data.reduce((total, item) => {
+            total += item.value
+            return total
+          }, 0)
+          this.updateTable(i - 1)
+        }},
         total_outflow: 0,
       })
     }
+  }
+
+  updateTable(index) {
+    const row = this.state.rows[index]
+    row.ending_balance = row.starting_balance + row.total_inflow - row.total_outflow
+    let balance = row.ending_balance
+    const updater = {}
+    for (let i = index + 1; i < this.state.rows.length; i += 1) {
+      const row = this.state.rows[i]
+      updater[i] = {
+        starting_balance: {$set: balance},
+        ending_balance: {$set: balance + row.total_inflow - row.total_outflow},
+      }
+      balance = updater[i].ending_balance.$set
+    }
+    setTimeout(() => {
+      this.setState({rows: update(this.state.rows, updater)})
+    }, 0)
   }
 
   handleGridRowsUpdated({ fromRow, toRow, updated }) {
@@ -103,20 +178,7 @@ export default class Budget extends React.Component {
       const rows = {}
       const row = this.state.rows[fromRow]
       row.starting_balance = parseFloat(updated.starting_balance)
-      row.ending_balance = row.starting_balance + row.total_inflow - row.total_outflow
-      let balance = row.ending_balance
-      let updater = {}
-      for (let i = fromRow + 1; i < this.state.rows.length; i += 1) {
-        const row = this.state.rows[i]
-        updater[i] = {
-          starting_balance: {$set: balance},
-          ending_balance: {$set: balance + row.total_inflow - row.total_outflow},
-        }
-        balance = updater[i].ending_balance.$set
-      }
-      setTimeout(() => {
-        this.setState({rows: update(this.state.rows, updater)})
-      }, 0)
+      this.updateTable(fromRow)
     }
   }
 
