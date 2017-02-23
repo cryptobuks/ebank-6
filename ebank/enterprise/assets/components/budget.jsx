@@ -128,8 +128,12 @@ export default class Budget extends React.Component {
   }
 
   componentDidMount() {
-    api.fetchBudgetTable().then((data) => {
+    api.getBudgetTable().then((data) => {
       if (data) {
+        data.forEach((item, i) => {
+          item.inflow.update = this.flowUpdater(i, 'inflow')
+          item.outflow.update = this.flowUpdater(i, 'outflow')
+        })
         this.setState({rows: data})
       } else {
         this.createBudgetTable()
@@ -139,6 +143,17 @@ export default class Budget extends React.Component {
     })
   }
 
+  flowUpdater(i, type) {
+    return (data) => {
+      this.state.rows[i][type].list = data
+      this.state.rows[i]['total_' + type] = data.reduce((total, item) => {
+        total += item.value
+        return total
+      }, 0)
+      this.updateTable(i)
+    }
+  }
+
   createBudgetTable() {
     for (let i = 1; i <= 24; i += 1) {
       this.state.rows.push({
@@ -146,23 +161,9 @@ export default class Budget extends React.Component {
         month: moment().add(i, 'month').format('YYYY-MM'),
         starting_balance: 0,
         ending_balance: 0,
-        inflow: {list: [], update: (data) => {
-          this.state.rows[i - 1].inflow.list = data
-          this.state.rows[i - 1].total_inflow = data.reduce((total, item) => {
-            total += item.value
-            return total
-          }, 0)
-          this.updateTable(i - 1)
-        }},
+        inflow: {list: [], update: this.flowUpdater(i - 1, 'inflow')},
         total_inflow: 0,
-        outflow: {list: [], update: (data) => {
-          this.state.rows[i - 1].outflow.list = data
-          this.state.rows[i - 1].total_outflow = data.reduce((total, item) => {
-            total += item.value
-            return total
-          }, 0)
-          this.updateTable(i - 1)
-        }},
+        outflow: {list: [], update: this.flowUpdater(i - 1, 'outflow')},
         total_outflow: 0,
       })
     }
@@ -197,7 +198,7 @@ export default class Budget extends React.Component {
   }
 
   upload() {
-    api.uploadBudgetTable(this.state.rows)
+    api.saveBudgetTable(this.state.rows).then(() => alert('保存成功'))
   }
 
   render() {
