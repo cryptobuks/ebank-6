@@ -3,6 +3,7 @@ import ReactDataGrid from 'react-data-grid'
 import update from 'immutability-helper'
 import {Popover, OverlayTrigger} from 'react-bootstrap'
 import Base from './base'
+import api from '../modules/api'
 const moment = require('moment')
 
 class Formatter extends React.Component {
@@ -124,6 +125,7 @@ export default class Budget extends React.Component {
       },
     ]
     this.create()
+    this.upload = this.upload.bind(this)
   }
 
   create() {
@@ -182,15 +184,25 @@ export default class Budget extends React.Component {
     }
   }
 
+  upload() {
+    api.uploadBudgetTable(this.state.rows)
+  }
+
   render() {
     return <Base>
+      <div className='clearfix'>
+        <h2 className='pull-left module-title'>预算表</h2>
+        <button className='btn btn-primary pull-right' onClick={this.upload}>
+          <span className='glyphicon glyphicon-save'/> 保存
+        </button>
+      </div>
       <ReactDataGrid
         enableCellSelect={true}
         columns={this.columns}
         rowGetter={i => this.state.rows[i]}
         rowsCount={this.state.rows.length}
         onGridRowsUpdated={this.handleGridRowsUpdated.bind(this)}
-        minHeight={500} />
+        minHeight={innerHeight - 180} />
     </Base>
   }
 }

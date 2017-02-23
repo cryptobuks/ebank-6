@@ -37,6 +37,14 @@ class Api {
   getVerificationCode(mobile) {
     return this.request('GET', '/get_verification_code/' + mobile)
   }
+
+  uploadBudgetTable(data) {
+    return this.request('POST', '/upload_budget_table', {data: data})
+  }
+
+  fetchBudgetTable() {
+    return this.request('GET', '/fetch_budget_table')
+  }
 }
 
 const api = new Api()
