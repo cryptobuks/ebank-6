@@ -1,10 +1,125 @@
 import React from 'react'
+import ReactDataGrid from 'react-data-grid'
+import {Popover, OverlayTrigger} from 'react-bootstrap'
 import Base from './base'
+const moment = require('moment')
+
+class Formatter extends React.Component {
+  render() {
+    const list = this.props.value.list || []
+    return <div className='inflow-detail'>
+      <OverlayTrigger trigger='click' overlay={
+        <Popover id='popover-positioned-top'>
+          <table className='table'>
+            <thead>
+            <tr>
+              <th>标题</th>
+              <th>金额</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {list.map((item, i) => <tr key={i}>
+              <td>{item.title}</td>
+              <td>{item.value}</td>
+              <td>
+                <a href='javascript:' className='text-danger'>删除</a>
+              </td>
+            </tr>)}
+            <tr>
+              <td><input type='text' className='form-control input-sm'/></td>
+              <td><input type='number' className='form-control input-sm'/></td>
+              <td><a href='javascript:'>添加</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </Popover>}>
+        <a href='javascript:'>查看</a>
+      </OverlayTrigger>
+    </div>
+  }
+}
 
 export default class Budget extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      rows: [],
+    }
+    this.columns = [
+      {
+        key: 'month',
+        name: '月份',
+      },
+      {
+        key: 'starting_balance',
+        name: '期初余额',
+        editable: true,
+      },
+      {
+        key: 'inflow',
+        name: '收入明细',
+        formatter: Formatter,
+      },
+      {
+        key: 'total_inflow',
+        name: '总收入',
+        editable: true,
+      },
+      {
+        key: 'outflow',
+        name: '支出明细',
+        formatter: Formatter,
+      },
+      {
+        key: 'total_outflow',
+        name: '总支出',
+        editable: true,
+      },
+      {
+        key: 'ending_balance',
+        name: '期末余额',
+      },
+    ]
+    this.create()
+  }
+
+  create() {
+    for (let i = 1; i <= 24; i += 1) {
+      this.state.rows.push({
+        code: moment().add(i, 'month').format('YYYYMM'),
+        month: moment().add(i, 'month').format('YYYY-MM'),
+        starting_balance: 0,
+        ending_balance: 0,
+        inflow: {list: [{title: '利息', value: 12}]},
+        total_inflow: 0,
+        outflow: {list: [{title: '利息', value: 12}]},
+        total_outflow: 0,
+      })
+    }
+    this.setState({rows: this.state.rows})
+  }
+
+  handleGridRowsUpdated({ fromRow, toRow, updated }) {
+    const row = this.state.rows[fromRow]
+    if (updated.starting_balance) {
+      row.starting_balance = parseFloat(updated.starting_balance)
+      row.ending_balance = row.starting_balance + row.total_inflow - row.total_outflow
+      for (let i = fromRow; i < this.state.rows.length; i += 1) {
+        ;
+      }
+    }
+  }
+
   render() {
     return <Base>
-      <h1>预算管理</h1>
+      <ReactDataGrid
+        enableCellSelect={true}
+        columns={this.columns}
+        rowGetter={i => this.state.rows[i]}
+        rowsCount={this.state.rows.length}
+        onGridRowsUpdated={this.handleGridRowsUpdated.bind(this)}
+        minHeight={500} />
     </Base>
   }
 }

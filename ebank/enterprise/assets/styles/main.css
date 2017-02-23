@@ -12,6 +12,14 @@ body {
   padding-right: 0;
 }
 
+.popover {
+  max-width: 400px;
+}
+
+.table th {
+  white-space: nowrap;
+}
+
 .navbar-ebank {
   background-color: #fff;
   border-color: #e63a2c;
@@ -74,4 +82,13 @@ body {
 
 .dl-horizontal dd {
   margin-left: 115px;
+}
+
+.react-grid-Grid {
+  border: 0;
+}
+
+.react-grid-HeaderCell {
+  font-weight: normal;
+  background-color: #fff;
 }
