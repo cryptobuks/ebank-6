@@ -1,5 +1,5 @@
 flask==0.12
 flask-sqlalchemy==2.1
-flask-user==0.6.11
 gunicorn==19.6.0
 requests==2.13.0
+supervisor==3.3.1

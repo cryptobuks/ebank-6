@@ -27,7 +27,7 @@ export default withRouter(class Login extends React.Component {
   render() {
     return <form className='col-lg-4 col-lg-offset-4' onSubmit={this.submit}>
       <div className='page-header'>
-        <h1>eBank</h1>
+        <h1>易伴金融</h1>
       </div>
       <div className='form-group'>
         <div className='input-group'>
