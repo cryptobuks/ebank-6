@@ -11,6 +11,7 @@ from ..model.sms_verification import SmsVerification
 from ..model.monthly_budget import MonthlyBudget
 from ..model.cash_flow import CashFlow
 from ..sms import sms
+from ..cache import cache
 from ..utils import response_success, response_failure
 from ..utils import set_encoding
 
@@ -18,6 +19,7 @@ set_encoding()
 app = Flask(__name__)
 app.config.from_pyfile('../config.py')
 sms.init_app(app)
+cache.init_app(app)
 sqlalchemy.init_app(app)
 sqlalchemy.create_all(app=app)
 
@@ -91,11 +93,16 @@ def get_current_enterprise():
     return Enterprise.query.filter_by(account=session['account']).first()
 
 
-@app.route('/fetch_budget_table')
-def fetch_budget_table():
-    return response_success(None)
+@app.route('/get_budget_table')
+def get_budget_table():
+    budget_table = cache.get('budget_table-' + session['account'])
+    if budget_table:
+        return response_success(budget_table)
+    else:
+        return response_success(None)
 
 
-@app.route('/upload_budget_table', methods=['POST'])
+@app.route('/save_budget_table', methods=['POST'])
 def save_budget_table():
-    return response_success(None)
+    cache.set('budget_table-' + session['account'], request.form['data'])
+    return response_success(True)

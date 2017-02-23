@@ -1,6 +1,11 @@
 # coding=utf-8
 import os
 
+ROOT_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
+CACHE_TYPE = 'filesystem'
+CACHE_DIR = ROOT_PATH + '/tmp/cache'
+
 SECRET_KEY = os.getenv('SECRET_KEY', 'SECRET_KEY')
 SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///../ebank.sqlite')
 SQLALCHEMY_TRACK_MODIFICATIONS = True

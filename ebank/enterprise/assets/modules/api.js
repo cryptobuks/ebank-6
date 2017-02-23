@@ -38,12 +38,14 @@ class Api {
     return this.request('GET', '/get_verification_code/' + mobile)
   }
 
-  uploadBudgetTable(data) {
-    return this.request('POST', '/upload_budget_table', {data: data})
+  saveBudgetTable(data) {
+    return this.request('POST', '/save_budget_table', {
+      data: JSON.stringify(data),
+    })
   }
 
-  fetchBudgetTable() {
-    return this.request('GET', '/fetch_budget_table')
+  getBudgetTable() {
+    return this.request('GET', '/get_budget_table').then((data) => JSON.parse(data))
   }
 }
 
