@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from . import sqlalchemy
 
 
@@ -9,3 +11,6 @@ class Enterprise(sqlalchemy.Model):
     contacts_mobile = sqlalchemy.Column(sqlalchemy.String(100), nullable=False, unique=True)
     business_id = sqlalchemy.Column(sqlalchemy.String(100), nullable=False, unique=True)
     business_name = sqlalchemy.Column(sqlalchemy.String(100), nullable=False, unique=True)
+
+    def get_monthly_budget(self):
+        return self.monthly_budget.all()

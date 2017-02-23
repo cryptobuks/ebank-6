@@ -1,12 +1,15 @@
 # coding=utf-8
 
 import hashlib
+from datetime import datetime
 
 from flask import Flask, request, render_template, session, redirect
 
 from ..model import sqlalchemy
 from ..model.enterprise import Enterprise
 from ..model.sms_verification import SmsVerification
+from ..model.monthly_budget import MonthlyBudget
+from ..model.cash_flow import CashFlow
 from ..sms import sms
 from ..utils import response_success, response_failure
 from ..utils import set_encoding
@@ -82,3 +85,13 @@ def login():
 def logout():
     session['account'] = None
     return redirect('/#/login')
+
+
+def get_current_enterprise():
+    return Enterprise.query.filter_by(account=session['account']).first()
+
+
+@app.route('/get_budget_table', methods=['POST'])
+def get_budgets():
+    enterprise = get_current_enterprise()
+    response_success(enterprise.get_monthly_budget())
