@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDataGrid from 'react-data-grid'
+import update from 'immutability-helper'
 import {Popover, OverlayTrigger} from 'react-bootstrap'
 import Base from './base'
 const moment = require('moment')
@@ -64,7 +65,6 @@ export default class Budget extends React.Component {
       {
         key: 'total_inflow',
         name: '总收入',
-        editable: true,
       },
       {
         key: 'outflow',
@@ -74,7 +74,6 @@ export default class Budget extends React.Component {
       {
         key: 'total_outflow',
         name: '总支出',
-        editable: true,
       },
       {
         key: 'ending_balance',
@@ -97,17 +96,27 @@ export default class Budget extends React.Component {
         total_outflow: 0,
       })
     }
-    this.setState({rows: this.state.rows})
   }
 
   handleGridRowsUpdated({ fromRow, toRow, updated }) {
-    const row = this.state.rows[fromRow]
     if (updated.starting_balance) {
+      const rows = {}
+      const row = this.state.rows[fromRow]
       row.starting_balance = parseFloat(updated.starting_balance)
       row.ending_balance = row.starting_balance + row.total_inflow - row.total_outflow
-      for (let i = fromRow; i < this.state.rows.length; i += 1) {
-        ;
+      let balance = row.ending_balance
+      let updater = {}
+      for (let i = fromRow + 1; i < this.state.rows.length; i += 1) {
+        const row = this.state.rows[i]
+        updater[i] = {
+          starting_balance: {$set: balance},
+          ending_balance: {$set: balance + row.total_inflow - row.total_outflow},
+        }
+        balance = updater[i].ending_balance.$set
       }
+      setTimeout(() => {
+        this.setState({rows: update(this.state.rows, updater)})
+      }, 0)
     }
   }
 
