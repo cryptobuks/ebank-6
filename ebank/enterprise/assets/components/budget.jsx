@@ -40,7 +40,7 @@ class Formatter extends React.Component {
   }
 
   render() {
-    return <OverlayTrigger trigger='click' placement='bottom' overlay={
+    return <OverlayTrigger trigger='click' placement='bottom' rootClose={true} overlay={
       <Popover id='popover-flow-detail'>
         <table className='table'>
           <thead>
