@@ -5,9 +5,9 @@ export default class UserInfo extends React.Component {
   render() {
     let user = window.user || {}
     return <Base>
-      <div className="panel panel-default">
-        <div className="panel-heading">基本信息</div>
-        <div className="panel-body">
+      <div className='panel panel-default'>
+        <div className='panel-heading'>基本信息</div>
+        <div className='panel-body'>
           <dl className='dl-horizontal'>
             <dt>企业名称</dt>
             <dd>{user.business_name}</dd>
@@ -16,9 +16,9 @@ export default class UserInfo extends React.Component {
           </dl>
         </div>
       </div>
-      <div className="panel panel-default">
-        <div className="panel-heading">联系人</div>
-        <div className="panel-body">
+      <div className='panel panel-default'>
+        <div className='panel-heading'>联系人</div>
+        <div className='panel-body'>
           <dl className='dl-horizontal'>
             <dt>名字</dt>
             <dd>{user.contacts_name}</dd>
