@@ -3,6 +3,11 @@ body {
   color: #666;
 }
 
+th {
+  font-weight: normal;
+  color: #333;
+}
+
 .side-nav {
   padding: 0;
 }
@@ -96,4 +101,17 @@ body {
 .module-title {
   margin-top: 0;
   margin-bottom: 15px;
+}
+
+.product-detail {
+  padding-top: 15px;
+}
+
+.product-detail p {
+  margin: 0;
+}
+
+.product-list {
+  margin-top: 15px;
+  margin-bottom: 0;
 }
