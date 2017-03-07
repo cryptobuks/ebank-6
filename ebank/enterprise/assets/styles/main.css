@@ -115,3 +115,7 @@ th {
   margin-top: 15px;
   margin-bottom: 0;
 }
+
+.panel-body table {
+  margin-bottom: 0;
+}

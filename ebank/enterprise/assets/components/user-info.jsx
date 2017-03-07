@@ -1,32 +1,33 @@
 import React from 'react'
+import {Link} from 'react-router'
 import Base from './base'
 
 export default class UserInfo extends React.Component {
   render() {
     let user = window.user || {}
-    return <Base>
+    return <div>
       <div className='panel panel-default'>
-        <div className='panel-heading'>基本信息</div>
         <div className='panel-body'>
-          <dl className='dl-horizontal'>
+          <dl className='dl-horizontal col-lg-6'>
             <dt>企业名称</dt>
             <dd>{user.business_name}</dd>
+            <dt>所在城市</dt>
+            <dd>北京</dd>
+            <dt>主营业务</dt>
+            <dd>互联网</dd>
+            <dt>融资轮次</dt>
+            <dd>A轮</dd>
+          </dl>
+          <dl className='dl-horizontal col-lg-6'>
             <dt>营业执照号码</dt>
             <dd>{user.business_id}</dd>
+            <dt>行业类别</dt>
+            <dd>互联网</dd>
+            <dt>法定代表人</dt>
+            <dd>{user.contact_name}</dd>
           </dl>
         </div>
       </div>
-      <div className='panel panel-default'>
-        <div className='panel-heading'>联系人</div>
-        <div className='panel-body'>
-          <dl className='dl-horizontal'>
-            <dt>名字</dt>
-            <dd>{user.contacts_name}</dd>
-            <dt>号码</dt>
-            <dd>{user.contacts_mobile}</dd>
-          </dl>
-        </div>
-      </div>
-    </Base>
+    </div>
   }
 }

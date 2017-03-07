@@ -101,7 +101,7 @@ export default class Plan extends React.Component {
   }
 
   render() {
-    return <Base>
+    return <div>
       {this.state.products.map((group, i) =>
         <div className='panel panel-default' key={i}>
           <div className='panel-heading'>
@@ -146,6 +146,6 @@ export default class Plan extends React.Component {
           </div>
         </div>
       )}
-    </Base>
+    </div>
   }
 }

@@ -202,7 +202,7 @@ export default class Budget extends React.Component {
   }
 
   render() {
-    return <Base>
+    return <div>
       <div className='clearfix'>
         <h2 className='pull-left module-title'>预算表</h2>
         <button className='btn btn-primary pull-right' onClick={this.upload}>
@@ -216,6 +216,6 @@ export default class Budget extends React.Component {
         rowsCount={this.state.rows.length}
         onGridRowsUpdated={this.handleGridRowsUpdated.bind(this)}
         minHeight={innerHeight - 180} />
-    </Base>
+    </div>
   }
 }

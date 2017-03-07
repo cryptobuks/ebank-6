@@ -10,27 +10,27 @@ export default withRouter(class SideNav extends React.Component {
     this.menu = [
       {
         name: '客户资料',
-        path: '/',
+        path: 'user',
         icon: 'user',
       },
       {
         name: '在线出纳',
-        path: '/cash_management',
+        path: 'cash_management',
         icon: 'calendar',
       },
       {
         name: '预算管理',
-        path: '/budget',
+        path: 'budget',
         icon: 'envelope',
       },
       {
         name: '理财计划',
-        path: '/plan',
+        path: 'plan',
         icon: 'tasks',
       },
       {
         name: '贷款融资',
-        path: '/loan',
+        path: 'loan',
         icon: 'magnet',
       },
     ]
@@ -39,7 +39,7 @@ export default withRouter(class SideNav extends React.Component {
   render() {
     return <ul className='nav nav-stacked nav-side' style={{height: this.state.height}}>
       {this.menu.map((item) =>
-        <li className={item.path == this.props.router.routes[0].path ? 'active' : ''} key={item.name}>
+        <li className={item.path == this.props.router.routes[1].path ? 'active' : ''} key={item.name}>
           <Link to={item.path}>
             <span className={'glyphicon glyphicon-' + item.icon}/> {item.name}
           </Link>
