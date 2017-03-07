@@ -33,11 +33,6 @@ export default withRouter(class SideNav extends React.Component {
         path: '/loan',
         icon: 'magnet',
       },
-      {
-        name: '礼品超市',
-        path: '/market',
-        icon: 'shopping-cart',
-      },
     ]
   }
 

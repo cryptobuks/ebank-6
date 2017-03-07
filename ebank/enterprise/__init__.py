@@ -1,17 +1,14 @@
 # coding=utf-8
 
 import hashlib
-from datetime import datetime
 
 from flask import Flask, request, render_template, session, redirect
 
+from ..cache import cache
 from ..model import sqlalchemy
 from ..model.enterprise import Enterprise
 from ..model.sms_verification import SmsVerification
-from ..model.monthly_budget import MonthlyBudget
-from ..model.cash_flow import CashFlow
 from ..sms import sms
-from ..cache import cache
 from ..utils import response_success, response_failure
 from ..utils import set_encoding
 
@@ -49,6 +46,7 @@ def hash_string(string):
     return hashlib.sha1(string).hexdigest()
 
 
+# todo: 完善数据验证
 @app.route('/register', methods=['POST'])
 def register():
     if SmsVerification.verify(request.form['contacts-mobile'], request.form['verification-code']):
@@ -93,6 +91,7 @@ def get_current_enterprise():
     return Enterprise.query.filter_by(account=session['account']).first()
 
 
+# todo: 实现数据库版本
 @app.route('/get_budget_table')
 def get_budget_table():
     budget_table = cache.get('budget_table-' + session['account'])
@@ -102,6 +101,7 @@ def get_budget_table():
         return response_success(None)
 
 
+# todo: 实现数据库版本
 @app.route('/save_budget_table', methods=['POST'])
 def save_budget_table():
     cache.set('budget_table-' + session['account'], request.form['data'])
