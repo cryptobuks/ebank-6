@@ -31,9 +31,9 @@ export default class Main extends React.Component {
         <Route path='market' component={Market}/>
         <Route path='loan' component={Loan}/>
         <Route path='plan' component={Plan}/>
-        <Route path='login' component={Login}/>
-        <Route path='register' component={Register}/>
       </Route>
+      <Route path='login' component={Login}/>
+      <Route path='register' component={Register}/>
     </Router>
   }
 }
