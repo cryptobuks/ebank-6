@@ -14,7 +14,7 @@ export default class Header extends React.Component {
         </div>
         <ul className='nav navbar-nav navbar-right'>
           <li><Link to='/cash_management'>在线出纳</Link></li>
-          <li><Link to='/budget'>预算管理</Link></li>
+          <li><Link to='/budget_manage'>预算管理</Link></li>
           <li><Link to='/plan'>理财计划</Link></li>
           <li><Link to='/loan'>贷款融资</Link></li>
           <li><a/></li>
