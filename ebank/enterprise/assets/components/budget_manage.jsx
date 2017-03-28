@@ -122,11 +122,11 @@ export default class BudgetManage extends React.Component {
             <h3>报告预览区</h3>
 
 
-            <table>
+            <table className="table">
 
                 <thead>
                 <tr>
-                    <th>" "</th>
+                    <th>      </th>
                     <th>第1期间</th>
                     <th>第2期间</th>
                     <th>第3期间</th>
@@ -140,42 +140,104 @@ export default class BudgetManage extends React.Component {
 
                 <tr>
                     <td>期初余额</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>支出1</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>支出2</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+
                 </tr>
 
                 <tr>
                     <td>支出3</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>支出合计</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>收入1</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>收入2</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>收入3</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>收入合计</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
                 <tr>
                     <td>期末余额</td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
+                    <td>       </td>
                 </tr>
 
 
@@ -187,7 +249,7 @@ export default class BudgetManage extends React.Component {
 
             <h3>更精细的预算需求</h3>
 
-            <table>
+            <table className="table">
                 <thead>
                 <tr>
                     <th>编号1</th>

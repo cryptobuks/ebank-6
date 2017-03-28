@@ -20,7 +20,7 @@ export default withRouter(class SideNav extends React.Component {
       },
       {
 
-        name: '预算预算',
+        name: '预算管理',
         path: 'budget_manage',
         icon: 'envelope',
       },
