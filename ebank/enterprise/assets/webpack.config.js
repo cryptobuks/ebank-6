@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   entry: './main.jsx',
   output: {
-    path: '../static',
+    path: '/root/ebank/ebank/enterprise/static',
     filename: 'bundle.js',
     publicPath: '/static/',
   },
