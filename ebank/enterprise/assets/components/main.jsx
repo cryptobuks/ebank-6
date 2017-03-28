@@ -5,7 +5,7 @@ import User from './user'
 import UserInfo from './user-info'
 import UserReport from './user-report'
 import UserWelfare from './user-welfare'
-import Budget from './budget'
+//import Budget from './budget'
 import BudgetManage from './budget_manage'
 import CashManagement from './cash_management'
 import Market from './market'
@@ -27,8 +27,8 @@ export default class Main extends React.Component {
           <Route path='report' component={UserReport}/>
           <Route path='welfare' component={UserWelfare}/>
         </Route>
-        <Route path='budget' component={Budget}/>
-        <Route path='budget_manage' component="{BudgetManage}"/>
+        //<Route path='budget' component={Budget}/>
+        <Route path='budget_manage' component={BudgetManage}/>
         <Route path='cash_management' component={CashManagement}/>
         <Route path='market' component={Market}/>
         <Route path='loan' component={Loan}/>
