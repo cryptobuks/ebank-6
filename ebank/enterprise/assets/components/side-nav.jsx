@@ -19,11 +19,8 @@ export default withRouter(class SideNav extends React.Component {
         icon: 'calendar',
       },
       {
-<<<<<<< HEAD
-        name: '预算',
-=======
+
         name: '预算预算',
->>>>>>> aa3bfe3781aba55b6b4ac6ba99f1fe843d34e46b
         path: 'budget_manage',
         icon: 'envelope',
       },
