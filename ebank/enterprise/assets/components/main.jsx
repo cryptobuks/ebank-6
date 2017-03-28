@@ -27,6 +27,7 @@ export default class Main extends React.Component {
           <Route path='welfare' component={UserWelfare}/>
         </Route>
         <Route path='budget' component={Budget}/>
+        <Route path='budget_manage' component="{BudgetManage}"/>
         <Route path='cash_management' component={CashManagement}/>
         <Route path='market' component={Market}/>
         <Route path='loan' component={Loan}/>
