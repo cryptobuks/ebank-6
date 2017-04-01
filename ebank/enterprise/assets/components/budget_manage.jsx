@@ -5,29 +5,29 @@ export default class BudgetManage extends React.Component {
     render() {
         return <div>
             <h3 className="module-title">现金预算报告模板</h3>
-            <table className="table">
+            <table className="table-responsive" border="2">
 
                 <tbody>
                 <tr>
-                    <td>模板1</td>
-                    <td>名称</td>
-                    <td>企业类别</td>
-                    <td>期限</td>
-                    <td>预览</td>
-                    <td>打印</td>
-                    <td>分享</td>
-                    <td>调用</td>
+                    <td width="12.5%">模板1</td>
+                    <td width="12.5%">名称</td>
+                    <td width="12.5%">企业类别</td>
+                    <td width="12.5%">期限</td>
+                    <td width="12.5%">预览</td>
+                    <td width="12.5%">打印</td>
+                    <td width="12.5%">分享</td>
+                    <td width="12.5%">调用</td>
                 </tr>
 
                 <tr>
-                    <td>模板2</td>
-                    <td>名称</td>
-                    <td>企业类别</td>
-                    <td>期限</td>
-                    <td>预览</td>
-                    <td>打印</td>
-                    <td>分享</td>
-                    <td>调用</td>
+                    <td width="12.5%">模板2</td>
+                    <td width="12.5%">名称</td>
+                    <td width="12.5%">企业类别</td>
+                    <td width="12.5%">期限</td>
+                    <td width="12.5%">预览</td>
+                    <td width="12.5%">打印</td>
+                    <td width="12.5%">分享</td>
+                    <td width="12.5%">调用</td>
                 </tr>
 
                 <tr>
@@ -80,7 +80,7 @@ export default class BudgetManage extends React.Component {
 
             <h3 className="module-title">我要做现金预算报告</h3>
 
-            <table className="table">
+            <table className="table-responsive">
                 <tbody>
 
                 <tr>
@@ -110,7 +110,7 @@ export default class BudgetManage extends React.Component {
             <h3>报告预览区</h3>
 
 
-            <table className="table">
+            <table className="table-responsive">
 
                 <thead>
                 <tr>
@@ -237,7 +237,7 @@ export default class BudgetManage extends React.Component {
 
             <h3>更精细的预算需求</h3>
 
-            <table className="table">
+            <table className="table-responsive">
                 <thead>
                 <tr>
                     <th>编号1</th>
