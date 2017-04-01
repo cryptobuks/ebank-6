@@ -6,18 +6,6 @@ export default class BudgetManage extends React.Component {
         return <div>
             <h3 className="module-title">现金预算报告模板</h3>
             <table className="table">
-                <thead>
-                <tr>
-                    <th>模板</th>
-                    <th>名称</th>
-                    <th>企业类别</th>
-                    <th>期限</th>
-                    <th>预览</th>
-                    <th>打印</th>
-                    <th>分享</th>
-                    <th>调用</th>
-                </tr>
-                </thead>
 
                 <tbody>
                 <tr>
@@ -97,23 +85,23 @@ export default class BudgetManage extends React.Component {
 
                 <tr>
                     <td>参数1-1</td>
-                    <td>比如期初余额</td>
+                    <td>期初余额</td>
                     <td>参数1-2</td>
-                    <td>比如期末余额</td>
+                    <td>期末余额</td>
                 </tr>
 
                 <tr>
                     <td>参数2-1</td>
-                    <td>比如支出1</td>
+                    <td>支出1</td>
                     <td>参数2-2</td>
-                    <td>比如支出2</td>
+                    <td>支出2</td>
                 </tr>
 
                 <tr>
                     <td>参数3-1</td>
-                    <td>比如收入1</td>
+                    <td>收入1</td>
                     <td>参数3-2</td>
-                    <td>比如收入2</td>
+                    <td>收入2</td>
                 </tr>
                 </tbody>
 
