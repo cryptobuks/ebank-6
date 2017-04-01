@@ -5,7 +5,7 @@ export default class BudgetManage extends React.Component {
     render() {
         return <div>
             <h3 className="module-title">现金预算报告模板</h3>
-            <table className="table-responsive" border="2">
+            <table className="table">
 
                 <tbody>
                 <tr>
@@ -14,7 +14,7 @@ export default class BudgetManage extends React.Component {
                     <td width="12.5%">企业类别</td>
                     <td width="12.5%">期限</td>
                     <td width="12.5%">预览</td>
-                    <td width="12.5%">打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td width="12.5%">分享</td>
                     <td width="12.5%">调用</td>
                 </tr>
@@ -25,7 +25,7 @@ export default class BudgetManage extends React.Component {
                     <td width="12.5%">企业类别</td>
                     <td width="12.5%">期限</td>
                     <td width="12.5%">预览</td>
-                    <td width="12.5%">打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td width="12.5%">分享</td>
                     <td width="12.5%">调用</td>
                 </tr>
@@ -36,7 +36,7 @@ export default class BudgetManage extends React.Component {
                     <td>企业类别</td>
                     <td>期限</td>
                     <td>预览</td>
-                    <td>打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td>分享</td>
                     <td>调用</td>
                 </tr>
@@ -47,7 +47,7 @@ export default class BudgetManage extends React.Component {
                     <td>企业类别</td>
                     <td>期限</td>
                     <td>预览</td>
-                    <td>打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td>分享</td>
                     <td>调用</td>
                 </tr>
@@ -58,7 +58,7 @@ export default class BudgetManage extends React.Component {
                     <td>企业类别</td>
                     <td>期限</td>
                     <td>预览</td>
-                    <td>打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td>分享</td>
                     <td>调用</td>
                 </tr>
@@ -69,7 +69,7 @@ export default class BudgetManage extends React.Component {
                     <td>企业类别</td>
                     <td>期限</td>
                     <td>预览</td>
-                    <td>打印</td>
+                    <td className='text-left'><button className='btn btn-default btn-xs' onClick={() => window.print()}>打印</button></td>
                     <td>分享</td>
                     <td>调用</td>
                 </tr>
@@ -80,7 +80,7 @@ export default class BudgetManage extends React.Component {
 
             <h3 className="module-title">我要做现金预算报告</h3>
 
-            <table className="table-responsive">
+            <table className="table">
                 <tbody>
 
                 <tr>
@@ -110,7 +110,7 @@ export default class BudgetManage extends React.Component {
             <h3>报告预览区</h3>
 
 
-            <table className="table-responsive">
+            <table className="table">
 
                 <thead>
                 <tr>
@@ -237,7 +237,7 @@ export default class BudgetManage extends React.Component {
 
             <h3>更精细的预算需求</h3>
 
-            <table className="table-responsive">
+            <table className="table">
                 <thead>
                 <tr>
                     <th>编号1</th>
